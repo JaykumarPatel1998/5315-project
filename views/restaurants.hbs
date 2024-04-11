@@ -1,0 +1,56 @@
+{{!-- /******************************************************************************
+***
+* ITE5315 – project
+* I declare that this assignment is my own work in accordance with Humber Academic Policy.
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+*
+* Name: Student ID: N01540305 Date: 11th April 2024
+*
+*
+******************************************************************************
+**/ --}}
+<table>
+    <thead>
+        <tr>
+            <th>Restaurant Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>ZipCode</th>
+            <th>Borough</th>
+            <th>Cuisine</th>
+        </tr>
+    </thead>
+    <tbody>
+            {{#each data}}
+        <tr>
+                <td>{{this.restaurant_id}}</td>
+                <td>{{this.name}}</td>
+                <td>{{formatAddress this.address}}</td>
+                <td>{{this.address.zipcode}}</td>
+                <td>{{this.borough}}</td>
+                <td>{{this.cuisine}}</td>
+        </tr>
+            {{/each}}
+    </tbody>
+</table>
+<form action="/api/restaurants" method="get">
+    <div class="wrapper">
+        <label for="page">page number : </label>
+        <input type="number" name="page" id="page">
+    </div>
+    
+    <div class="wrapper">
+        <label for="perPage">items per page : </label>
+    <input type="number" name="perPage" id="perPage">
+    </div>
+
+    <div class="wrapper">
+        <label for="borough">borough : </label>
+    <input type="text" name="borough" id="borough">
+    </div>
+
+    <div class="wrapper">
+        <input type="submit" value="Filter">
+    </div>
+</form>
