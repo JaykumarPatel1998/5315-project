@@ -10,47 +10,77 @@
 *
 ******************************************************************************
 **/ --}}
-<table>
-    <thead>
-        <tr>
-            <th>Restaurant Id</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>ZipCode</th>
-            <th>Borough</th>
-            <th>Cuisine</th>
-        </tr>
-    </thead>
-    <tbody>
-            {{#each data}}
-        <tr>
-                <td>{{this.restaurant_id}}</td>
-                <td>{{this.name}}</td>
-                <td>{{formatAddress this.address}}</td>
-                <td>{{this.address.zipcode}}</td>
-                <td>{{this.borough}}</td>
-                <td>{{this.cuisine}}</td>
-        </tr>
-            {{/each}}
-    </tbody>
-</table>
-<form action="/api/restaurants" method="get">
-    <div class="wrapper">
-        <label for="page">page number : </label>
-        <input type="number" name="page" id="page">
-    </div>
-    
-    <div class="wrapper">
-        <label for="perPage">items per page : </label>
-    <input type="number" name="perPage" id="perPage">
-    </div>
 
-    <div class="wrapper">
-        <label for="borough">borough : </label>
-    <input type="text" name="borough" id="borough">
-    </div>
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-20">
+            <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Get all restaurants route</h1>
+        </div>
+        <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+            <table class="table-auto w-full text-left whitespace-no-wrap">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            Restaurant Id</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            Name</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            Address</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            ZipCode</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            Borough</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            Cuisine</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                    <tr>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{this.restaurant_id}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{this.name}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{formatAddress this.address}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{this.address.zipcode}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{this.borough}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{this.cuisine}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <form class="border border-indigo-300 rounded-md flex mt-2 p-3 items-end" action="/api/restaurants" method="GET">
 
-    <div class="wrapper">
-        <input type="submit" value="Filter">
+                <div class="p-2 w-1/2">
+                    <div>
+                        <label for="page" class="leading-7 text-sm text-gray-600">page number : </label>
+                        <input type="number" id="page" name="page"
+                            class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                </div>
+
+                <div class="p-2 w-1/2">
+                    <div>
+                        <label for="perPage" class="leading-7 text-sm text-gray-600">items per page : </label>
+                        <input type="number" id="perPage" name="perPage"
+                            class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                </div>
+
+                <div class="p-2 w-1/2">
+                    <div>
+                        <label for="borough" class="leading-7 text-sm text-gray-600">borough : </label>
+                        <input type="text" id="borough" name="borough"
+                            class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                </div>
+
+                <div class="p-2 w-1/2 flex items-end gap-1">
+                        <input type="submit"
+                            class="cursor-pointer ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                        <input type="reset"
+                            class="cursor-pointer ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                    
+                </div>
+            </form>
+        </div>
     </div>
-</form>
+</section>
