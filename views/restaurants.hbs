@@ -11,10 +11,64 @@
 ******************************************************************************
 **/ --}}
 
+{{!-- this is the modal for deletion --}}
+<div id="toast-simple" class="hidden top-0 left-1/2 max-w-xs -translate-x-1/2">
+    <div
+        class="flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800"
+        role="alert">
+        <svg class="w-5 h-5 text-blue-600 dark:text-blue-500 rotate-45" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9" />
+        </svg>
+        <div class="ps-4 text-sm font-normal">Item deleted successfully. Refresh page to see new results.</div>
+    </div>
+</div>
+
+
+<div class="relative z-10 hidden" id="modal" aria-labelledby="delete-modal" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div
+                class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div
+                            class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                            </svg>
+                        </div>
+                        <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Delete record
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">Are you sure you want to delete the record?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <button onclick="deleteConfirm()" type="button"
+                        class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Delete</button>
+                    <button onclick="deleteNotConfirm()" type="button"
+                        class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="text-gray-600 body-font">
+
     <div class="container px-5 py-24 mx-auto">
+
         <div class="flex flex-col text-center w-full mb-20">
-            <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Get all restaurants route</h1>
+            <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">All restaurants</h1>
         </div>
         <div class="lg:w-2/3 w-full mx-auto overflow-auto">
             <table class="table-auto w-full text-left whitespace-no-wrap">
@@ -32,6 +86,12 @@
                             Borough</th>
                         <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                             Cuisine</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            Delete</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            Update</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            View</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,11 +103,28 @@
                         <td class="border-t-2 border-gray-200 px-4 py-3">{{this.address.zipcode}}</td>
                         <td class="border-t-2 border-gray-200 px-4 py-3">{{this.borough}}</td>
                         <td class="border-t-2 border-gray-200 px-4 py-3">{{this.cuisine}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">
+                            <a class="p-2 hover:bg-indigo-100 rounded-sm cursor-pointer deleteButton"
+                                data-id="{{this._id}}">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3 cursor-pointer">
+                            <a class="p-2 hover:bg-indigo-100 rounded-sm">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3 cursor-pointer">
+                            <a class="p-2 hover:bg-indigo-100 rounded-sm">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
-            <form class="border border-indigo-300 rounded-md flex mt-2 p-3 items-end" action="/api/restaurants" method="GET">
+            <form class="border border-indigo-300 rounded-md flex mt-2 p-3 items-end" action="/api/restaurants"
+                method="GET">
 
                 <div class="p-2 w-1/2">
                     <div>
@@ -74,13 +151,49 @@
                 </div>
 
                 <div class="p-2 w-1/2 flex items-end gap-1">
-                        <input type="submit"
-                            class="cursor-pointer ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                        <input type="reset"
-                            class="cursor-pointer ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                    
+                    <input type="submit"
+                        class="cursor-pointer ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                    <input type="reset"
+                        class="cursor-pointer ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
                 </div>
             </form>
         </div>
     </div>
 </section>
+<script>
+    const deleteButtons = document.getElementsByClassName("deleteButton");
+    const modal = document.getElementById("modal")
+    const toast = document.getElementById("toast-simple")
+
+    for (var i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener("click", function () {
+            modal.classList.remove("hidden")
+            console.log(this.getAttribute("data-id"))
+            modal.setAttribute("data-id", this.getAttribute("data-id"));
+        })
+    }
+
+    const deleteConfirm = async function (flag) {
+        const id = modal.getAttribute("data-id")
+
+        const response = await fetch(`/api/restaurants/${id}`, {
+            method: "DELETE",
+        });
+        console.log(await response.json())
+        
+        if (response.status < 300) {
+            modal.classList.add("hidden")
+            toast.classList.add("sticky")
+            toast.classList.remove("hidden")
+            setTimeout(() => {
+                toast.classList.add("hidden")
+                toast.classList.remove("sticky")
+            }, 2500)
+        }
+    }
+
+    const deleteNotConfirm = function () {
+        modal.classList.add("hidden")
+        modal.setAttribute("data-id", "");
+    }
+</script>

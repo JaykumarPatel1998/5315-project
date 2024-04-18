@@ -2,7 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import createHttpError, {isHttpError} from 'http-errors';
 import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser';
 import restaurantRouter from './routes/restaurant.routes.js';
+import authRouter from './routes/auth.routes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -34,11 +36,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+app.use(cookieParser())
+
 app.get("/", (req, res) => {
-    res.json({
-        "url" : `http://${process.env.HOST}:${process.env.PORT}/api/restaurants`
+    res.render('index', {
+        title : "Welcome page"
     })
 })
+
+app.use("/api/auth", authRouter)
 
 app.use("/api/restaurants", restaurantRouter)
 

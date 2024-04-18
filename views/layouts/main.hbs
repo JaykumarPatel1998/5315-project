@@ -12,46 +12,67 @@
 **/ --}}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
 
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-    <header class="text-gray-600 body-font bg-indigo-300">
-      <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center bg-transparent">
-        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
-          <span class="ml-3 text-xl">Jaykumar Patel - N01540305, 5315-projet</span>
+<body>
+
+<div class="min-h-[100vh] flex flex-col justify-between">
+  <header class="text-gray-600 body-font bg-indigo-200">
+    <div class="container mx-auto flex p-5 items-center bg-transparent">
+      <a class="flex title-font font-medium text-center items-center justify-center text-gray-900 grow cursor-pointer" href="/api/restaurants">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+          viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl">Welcome User</span>
+      </a>
+      <nav class="flex text-center items-center text-base justify-center grow ">
+        <a class="mr-5 hover:text-gray-900 cursor-pointer">Create Restauarant</a>
+        <a class="mr-5 hover:text-gray-900 cursor-pointer" href="/api/restaurants">View Restauarants</a>
+      </nav>
+      <div class="items-center text-center text-base justify-center grow ">
+        <a href="/api/auth/signout" 
+        class="bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base">
+          Logout
         </a>
       </div>
-    </header>
 
-    <main id="content">
-        {{{body}}}
-    </main>
+    </div>
+  </header>
 
-    <footer class="text-gray-600 body-font">
-      <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
-          <span class="ml-3 text-xl">5315-project</span>
+  <main id="content">
+    {{{body}}}
+  </main>
+
+  <footer class="text-gray-600 body-font">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+          viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl">Jaykumar Patel - N01540305, 5315-project</span>
+      </a>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <a class="ml-3 text-gray-500 cursor-pointer w-6" href="https://github.com/JaykumarPatel1998">
+          <img src="/images/linkedin.png" alt="">
+
         </a>
-        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-          <a class="ml-3 text-gray-500 cursor-pointer w-6" href="https://github.com/JaykumarPatel1998">
-            <img src="/images/linkedin.png" alt="">
-            
-          </a>
-          <a class="ml-3 text-gray-500 cursor-pointer w-6" href="https://www.linkedin.com/in/jaykumarpatel1998/">
-            <img src="/images/github.png" alt="">
-          </a>
-        </span>
-      </div>
-    </footer>
-  </body>
+        <a class="ml-3 text-gray-500 cursor-pointer w-6" href="https://www.linkedin.com/in/jaykumarpatel1998/">
+          <img src="/images/github.png" alt="">
+        </a>
+      </span>
+    </div>
+  </footer>
+</div>
+
+</body>
+
 </html>
