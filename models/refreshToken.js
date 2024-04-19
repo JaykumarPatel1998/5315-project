@@ -14,8 +14,7 @@ const refreshTokenSchema = new Schema({
   expiryDate: {
     type: Date,
     required: true
-  },
-  
+  }
 },
   {
     methods: {

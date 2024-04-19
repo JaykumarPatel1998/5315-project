@@ -12,3 +12,5 @@ mongoose.connect(process.env.MONGO_URL)
     });
 })
 .catch(console.error)
+
+export default app

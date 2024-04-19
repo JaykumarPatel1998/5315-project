@@ -23,6 +23,7 @@ export const signup = async (req, res, next) => {
 
 export const signin = async (req, res, next) => {
     try {
+        console.log("inside signin function")
         const user = await User.findOne({ username: req.body.username }).exec()
         if (!user) {
             throw createHttpError(404, "User not found")
@@ -53,8 +54,8 @@ export const signin = async (req, res, next) => {
             sameSite: "lax"
         })
 
-        res.status(200).redirect('/api/restaurants')
-        return
+        return res.status(200).redirect('/api/restaurants')
+        
 
     } catch (error) {
         next(error)

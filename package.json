@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "npm run build-tail && node server.js",
+    "start": "node server.js",
     "dev": "nodemon server.js",
     "build-tail": "tailwindcss build -i styles/tailwindcss.css -o public/stylesheets/style.css",
     "dev-tail": "tailwindcss build -i styles/tailwindcss.css -o public/stylesheets/style.css --watch"
